@@ -10,7 +10,7 @@ class ArticleController extends Controller
 {
     public function create()
     {
-        return view('articles.create', ['article' => new Article]);
+        return view('articles.create');
     }
 
     public function store(ArticleRequest $request)

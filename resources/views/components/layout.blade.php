@@ -33,7 +33,7 @@
             </x-nav-link>
           </li>
           <li class="nav-item">
-            <x-nav-link route-name="users.show" :route-params="auth()->user()->username">
+            <x-nav-link route-name="users.show" :route-params="auth()->id()">
               <img class="user-pic" src="{{ auth()->user()->image }}">
               {{ auth()->user()->username }}
             </x-nav-link>
@@ -41,7 +41,7 @@
         @endauth
         @guest
           <li class="nav-item">
-            <x-nav-link route-name="users.create">Sign up</x-nav-link>
+            <x-nav-link route-name="register">Sign up</x-nav-link>
           </li>
           <li class="nav-item">
             <x-nav-link route-name="login.create">Sign in</x-nav-link>
