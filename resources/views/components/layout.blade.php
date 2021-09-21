@@ -41,7 +41,7 @@
         @endauth
         @guest
           <li class="nav-item">
-            <x-nav-link route-name="register">Sign up</x-nav-link>
+            <x-nav-link route-name="register.create">Sign up</x-nav-link>
           </li>
           <li class="nav-item">
             <x-nav-link route-name="login.create">Sign in</x-nav-link>

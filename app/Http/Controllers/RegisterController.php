@@ -8,7 +8,12 @@ use Hash;
 
 class RegisterController extends Controller
 {
-    public function __invoke()
+    public function create()
+    {
+        return view('register.create');
+    }
+
+    public function store()
     {
         $attributes = request()->validate([
             'email' => 'required|email|unique:users',

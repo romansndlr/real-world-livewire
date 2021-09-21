@@ -33,16 +33,15 @@
           @foreach ($articles as $article)
             <div class="article-preview">
               <div class="article-meta">
-                <a href="{{ route('users.show', $article->author->username) }}"><img
+                <a href="{{ route('users.show', $article->author->id) }}"><img
                     src="{{ $article->author->image }}" /></a>
                 <div class="info">
-                  <a href="{{ route('users.show', $article->author->username) }}"
+                  <a href="{{ route('users.show', $article->author->id) }}"
                     class="author">{{ $article->author->username }}</a>
                   <span class="date">{{ $article->created_at->format('F jS') }}</span>
                 </div>
-                <button @class(['btn btn-sm pull-xs-right', 'btn-outline-primary'=> !$article->favorited,
-                  'btn-primary'=>
-                  $article->favorited])
+                <button @class([ 'btn btn-sm pull-xs-right' , 'btn-outline-primary'=> !$article->favorited,
+                  'btn-primary'=> $article->favorited])
                   wire:click="favorite({{ $article }})">
                   <i class="ion-heart"></i>
                   <span class="counter">

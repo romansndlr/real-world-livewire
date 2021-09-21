@@ -5,11 +5,15 @@
         <div class="col-md-6 offset-md-3 col-xs-12">
           <h1 class="text-xs-center">Sign in</h1>
           <p class="text-xs-center">
-            <a href="{{ route('register.create') }}">Need an account?</a>
+            <a href="{{ route('login.create') }}">Have an account?</a>
           </p>
           <x-validation-errors />
-          <form method="POST" action="{{ route('login.store') }}">
+          <form method="POST" action="{{ route('register.store') }}">
             @csrf
+            <fieldset class="form-group">
+              <input name="username" class="form-control form-control-lg" type="text" placeholder="Username"
+                value="{{ old('username') }}">
+            </fieldset>
             <fieldset class="form-group">
               <input name="email" class="form-control form-control-lg" type="text" placeholder="Email"
                 value="{{ old('email') }}">
@@ -18,7 +22,7 @@
               <input name="password" class="form-control form-control-lg" type="password" placeholder="Password">
             </fieldset>
             <button class="btn btn-lg btn-primary pull-xs-right">
-              Sign in
+              Sign up
             </button>
           </form>
         </div>

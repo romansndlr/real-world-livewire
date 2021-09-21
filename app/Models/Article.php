@@ -35,4 +35,9 @@ class Article extends Model
     {
         return $this->tags->map->text;
     }
+
+    public function getAuthoredByAuthUserAttribute()
+    {
+        return $this->author->id === auth()->id();
+    }
 }
