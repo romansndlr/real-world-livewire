@@ -25,7 +25,7 @@ use App\Http\Livewire\UserArticles;
               class="author">{{ $article->author->username }}</a>
             <span class="date">{{ $article->created_at->format('F jS') }}</span>
           </div>
-          @unless($article->authored_by_auth_user)
+          @can('favorite', $article)
             <button @class([ 'btn btn-sm pull-xs-right' , 'btn-outline-primary'=> !$article->favorited,
               'btn-primary'=> $article->favorited])
               wire:click="favorite({{ $article }})">
@@ -34,7 +34,7 @@ use App\Http\Livewire\UserArticles;
                 {{ $article->favorites_count }}
               </span>
             </button>
-          @endunless
+          @endcan
         </div>
         <a href="{{ route('articles.show', $article->id) }}" class="preview-link">
           <h1>{{ $article->title }}</h1>

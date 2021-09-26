@@ -36,8 +36,15 @@ class Article extends Model
         return $this->tags->map->text;
     }
 
-    public function getAuthoredByAuthUserAttribute()
+    public function scopeWithFavorited($query)
     {
-        return $this->author->id === auth()->id();
+        $query->withExists(['favorites as favorited' => function ($query) {
+            $query->where('user_id', auth()->id());
+        }]);
+    }
+
+    public function toggleFavorite()
+    {
+        $this->favorites()->toggle(auth()->id());
     }
 }

@@ -15,11 +15,7 @@
       <i class="ion-trash-a"></i> Delete Article
     </button>
   @else
-    <button class="btn btn-sm btn-outline-secondary">
-      <i class="ion-plus-round"></i>
-      &nbsp;
-      Follow Eric Simons <span class="counter">(10)</span>
-    </button>
+    <livewire:follow-user :user-id="$article->author->id"/>
     <livewire:favorite-article :articleId="$article->id" />
   @endcan
 </div>

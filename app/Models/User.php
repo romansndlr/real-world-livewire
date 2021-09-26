@@ -14,11 +14,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
     ];
@@ -41,5 +36,17 @@ class User extends Authenticatable
     public function favorites()
     {
         return $this->belongsToMany(Article::class, 'article_favorite');
+    }
+
+    public function scopeWithFollowed($query)
+    {
+        $query->withExists(['followers as followed' => function ($query) {
+            $query->where('user_id', auth()->id());
+        }]);
+    }
+
+    public function toggleFollow()
+    {
+        $this->followers()->toggle(auth()->id());
     }
 }

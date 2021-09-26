@@ -30,6 +30,11 @@ class ArticlePolicy
         return $user->id === $article->author->id;
     }
 
+    public function favorite(User $user, Article $article)
+    {
+        return $user->id !== $article->author->id;
+    }
+
     public function delete(User $user, Article $article)
     {
         //

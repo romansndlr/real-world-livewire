@@ -9,16 +9,12 @@ class FavoriteArticle extends Component
 {
     public $articleId;
 
-    public $favorited = false;
-
-    protected $listeners = ['favoriteClicked' => '$refresh'];
+    protected $listeners = ['favoriteToggled' => '$refresh'];
 
     public function getArticleProperty()
     {
         return Article::withCount('favorites')
-            ->withExists(['favorites as favorited' => function ($query) {
-                $query->where('user_id', auth()->id());
-            }])
+            ->withFavorited()
             ->find($this->articleId);
     }
 
@@ -28,9 +24,9 @@ class FavoriteArticle extends Component
             return redirect()->route('login.create');
         }
 
-        $this->article->favorites()->toggle(auth()->id());
+        $this->article->toggleFavorite();
 
-        $this->emit('favoriteClicked');
+        $this->emit('favoriteToggled');
     }
 
     public function render()
