@@ -22,17 +22,19 @@
       </div>
       <div class="row">
         <div class="col-xs-12 col-md-8 offset-md-2">
-          <form class="card comment-form">
-            <div class="card-block">
-              <textarea class="form-control" placeholder="Write a comment..." rows="3"></textarea>
-            </div>
-            <div class="card-footer">
-              <img src="{{ auth()->user()->image }}" class="comment-author-img" />
-              <button class="btn btn-sm btn-primary">
-                Post Comment
-              </button>
-            </div>
-          </form>
+          @auth
+            <form class="card comment-form">
+              <div class="card-block">
+                <textarea class="form-control" placeholder="Write a comment..." rows="3"></textarea>
+              </div>
+              <div class="card-footer">
+                <img src="{{ auth()->user()->image }}" class="comment-author-img" />
+                <button class="btn btn-sm btn-primary">
+                  Post Comment
+                </button>
+              </div>
+            </form>
+          @endauth
           @foreach ($article->comments as $comment)
             <div class="card">
               <div class="card-block">

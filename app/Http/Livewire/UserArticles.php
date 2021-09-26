@@ -11,9 +11,9 @@ class UserArticles extends Component
 {
     use WithPagination;
 
-    protected const MY_ARTICLES_TAB = 1;
+    public const MY_ARTICLES_TAB = 1;
 
-    protected const FAVORITED_ARTICLES_TAB = 2;
+    public const FAVORITED_ARTICLES_TAB = 2;
 
     protected $paginationTheme = 'bootstrap';
 
@@ -21,35 +21,15 @@ class UserArticles extends Component
 
     public $userId = null;
 
-    public function getIsMyArticlesTabProperty()
-    {
-        return $this->activeTab === self::MY_ARTICLES_TAB;
-    }
-
-    public function getIsFavoritedArticlesTabProperty()
-    {
-        return $this->activeTab === self::FAVORITED_ARTICLES_TAB;
-    }
-
-    public function setMyArticlesTab()
-    {
-        $this->activeTab = self::MY_ARTICLES_TAB;
-    }
-
-    public function setFavoritedArticlesTab()
-    {
-        $this->activeTab = self::FAVORITED_ARTICLES_TAB;
-    }
-
     public function render()
     {
         $user = User::find($this->userId);
 
-        if ($this->isMyArticlesTab) {
+        if ($this->activeTab === self::MY_ARTICLES_TAB) {
             $query = $user->articles();
         }
 
-        if ($this->isFavoritedArticlesTab) {
+        if ($this->activeTab === self::FAVORITED_ARTICLES_TAB) {
             $userIds = $user->favorites()->pluck('article_id')->toArray();
 
             $query = Article::whereIn('id', $userIds);

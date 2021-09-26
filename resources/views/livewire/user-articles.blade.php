@@ -1,13 +1,17 @@
+<?php
+use App\Http\Livewire\UserArticles;
+?>
+
 <div>
   <div class="articles-toggle">
     <ul class="nav nav-pills outline-active">
       <li class="nav-item">
-        <a class="nav-link {{ $this->isMyArticlesTab ? 'active' : '' }}" href=""
-          wire:click.prevent="setMyArticlesTab">My Articles</a>
+        <a class="nav-link {{ $activeTab === UserArticles::MY_ARTICLES_TAB ? 'active' : '' }}" href=""
+          wire:click.prevent="$set('activeTab', {{ UserArticles::MY_ARTICLES_TAB }})">My Articles</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ $this->isFavoritedArticlesTab ? 'active' : '' }}" href=""
-          wire:click.prevent="setFavoritedArticlesTab">Favorited Articles</a>
+        <a class="nav-link {{ $activeTab === UserArticles::FAVORITED_ARTICLES_TAB ? 'active' : '' }}" href=""
+          wire:click.prevent="$set('activeTab', {{ UserArticles::FAVORITED_ARTICLES_TAB }})">Favorited Articles</a>
       </li>
     </ul>
   </div>
