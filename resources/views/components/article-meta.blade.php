@@ -1,9 +1,9 @@
 @props(['article' => null])
 
 <div class="article-meta">
-  <a href="{{ route('users.show', $article->author->username) }}"><img src="{{ $article->author->image }}" /></a>
+  <a href="{{ route('users.show', $article->author->id) }}"><img src="{{ $article->author->image }}" /></a>
   <div class="info">
-    <a href="{{ route('users.show', $article->author->username) }}"
+    <a href="{{ route('users.show', $article->author->id) }}"
       class="author">{{ $article->author->username }}</a>
     <span class="date">{{ $article->created_at->format('F jS') }}</span>
   </div>
@@ -15,7 +15,7 @@
       <i class="ion-trash-a"></i> Delete Article
     </button>
   @else
-    <livewire:follow-user :user-id="$article->author->id"/>
+    <livewire:follow-user :userId="$article->author->id" />
     <livewire:favorite-article :articleId="$article->id" />
   @endcan
 </div>
